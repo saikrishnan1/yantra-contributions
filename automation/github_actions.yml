@@ -1,0 +1,31 @@
+name: Daily Yantra Meditation
+
+on:
+  schedule:
+    # Runs every day at 9:00 AM UTC
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  daily-commit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Configure git
+      run: |
+        git config user.name "Yantra Bot"
+        git config user.email "yantra-bot@users.noreply.github.com"
+    
+    - name: Daily Yantra Meditation
+      run: |
+        chmod +x automation/auto_commit.sh
+        ./automation/auto_commit.sh
+    
+    - name: Push changes
+      run: |
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
