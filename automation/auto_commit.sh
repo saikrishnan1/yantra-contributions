@@ -61,7 +61,7 @@ for i in $(seq 1 $NUM_COMMITS); do
 done
 
 # Auto-push (uncomment after initial setup and testing)
-# git push origin main --quiet
+git push origin master
 
 echo "✨ Daily yantra meditation complete: $TODAY_YANTRA"
 echo "📿 Mantra recited: $TODAY_MANTRA"
